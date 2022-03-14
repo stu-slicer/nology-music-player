@@ -33,7 +33,7 @@ public class MusicController {
         Scanner scanner = new Scanner(System.in);
         while (true) {
 
-            System.out.println("Please enter a command: ");
+            System.out.println("Please enter a command (use help for list): ");
             String command = scanner.nextLine();
 
             if( command == null || "".equalsIgnoreCase(command) ) {
