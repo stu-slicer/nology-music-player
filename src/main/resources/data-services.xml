@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dbUtils" class="com.nology.musicplayer.database.DBUtils" >
+        <property name="jdbcDriver" value="org.h2.Driver" />
+        <property name="jdbcDatabaseUrl" value="jdbc:h2:~/test" />
+        <property name="dbUsername" value="sa" />
+        <property name="dbPassword" value="" />
+    </bean>
+
+    <bean id="databaseInitialiser" class="com.nology.musicplayer.database.DatabaseInitialiser"
+            init-method="initialiseDatabase" >
+        <constructor-arg index="0" ref="dbUtils" />
+    </bean>
+
+    <bean id="trackService" class="com.nology.musicplayer.database.JdbcTrackService" >
+        <constructor-arg index="0" ref="dbUtils" />
+    </bean>
+
+
+</beans>

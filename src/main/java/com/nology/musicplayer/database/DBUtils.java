@@ -9,9 +9,29 @@ import static com.nology.musicplayer.database.DatabseConstants.JDBC_DATABASE_URL
 
 public class DBUtils {
 
+    /**
+     * JDBC driver class name.
+     */
+    private String jdbcDriver;
+
+    /**
+     * JDBC connection URL
+     */
+    private String jdbcDatabaseUrl;
+
+    /**
+     * Username for database
+     */
+    private String dbUsername;
+
+    /**
+     * Password for database.
+     */
+    private String dbPassword;
+
     public void performDBAction(String sql, boolean throwException) {
 
-        try (Connection connection = DriverManager.getConnection(JDBC_DATABASE_URL)) {
+        try (Connection connection = DriverManager.getConnection(this.jdbcDatabaseUrl)) {
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
 
                 boolean result = statement.execute();
@@ -68,4 +88,19 @@ public class DBUtils {
         }
     }
 
+    public void setJdbcDriver(String jdbcDriver) {
+        this.jdbcDriver = jdbcDriver;
+    }
+
+    public void setJdbcDatabaseUrl(String jdbcDatabaseUrl) {
+        this.jdbcDatabaseUrl = jdbcDatabaseUrl;
+    }
+
+    public void setDbUsername(String dbUsername) {
+        this.dbUsername = dbUsername;
+    }
+
+    public void setDbPassword(String dbPassword) {
+        this.dbPassword = dbPassword;
+    }
 }

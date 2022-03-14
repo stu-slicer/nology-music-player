@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="data-services.xml" />
+
+    <bean id="controller" class="com.nology.musicplayer.controller.MusicController"
+        init-method="initialiseController" >
+        <property name="trackService" ref="trackService" />
+        <property name="trackPlayer" ref="texttrackPlayer" />
+        <property name="trackDisplayer" ref="consoleTrackDisplayer" />
+    </bean>
+
+    <bean id="texttrackPlayer" class="com.nology.musicplayer.player.TextTrackPlayer" >
+    </bean>
+
+    <bean id="consoleTrackDisplayer" class="com.nology.musicplayer.frontend.ConsoleTrackDisplayer" >
+    </bean>
+
+</beans>

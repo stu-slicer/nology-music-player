@@ -1,11 +1,8 @@
 package com.nology.musicplayer;
 
 import com.nology.musicplayer.controller.MusicController;
-import com.nology.musicplayer.database.DBUtils;
-import com.nology.musicplayer.database.DatabaseInitialiser;
-import com.nology.musicplayer.database.JdbcTrackService;
-import com.nology.musicplayer.frontend.TrackDisplayer;
-import com.nology.musicplayer.player.TrackPlayer;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class MusicPlayer {
 
@@ -18,24 +15,10 @@ public class MusicPlayer {
     }
 
     private void buildAndStart() {
-        DBUtils dbUtils = new DBUtils();
 
-        // build DatabaseInitialiser
-
-        // initialise DB
-
-        // build JdbcTrackService
-
-        // build a TrackPlayer
-
-        // build a TrackDisplayer
-
-        // finally. build the MusicController
-
-
-        // initialise the controller
-        //controller.initialiseController();
-
+        ApplicationContext context = new ClassPathXmlApplicationContext( "services.xml", "data-services.xml");
+        MusicController controller = (MusicController) context.getBean("controller");
+        controller.run();
     }
 
     public static void main(String[] args) {
