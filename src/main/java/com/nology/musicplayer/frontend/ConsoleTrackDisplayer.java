@@ -2,11 +2,13 @@ package com.nology.musicplayer.frontend;
 
 import com.github.lalyos.jfiglet.FigletFont;
 import com.nology.musicplayer.data.Track;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+@Component
 public class ConsoleTrackDisplayer implements TrackDisplayer {
 
     interface Output {

@@ -1,9 +1,13 @@
 package com.nology.musicplayer;
 
+import com.nology.musicplayer.config.AppConfig;
 import com.nology.musicplayer.controller.MusicController;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MusicPlayer {
 
     enum RendererType {
@@ -15,8 +19,7 @@ public class MusicPlayer {
     }
 
     private void buildAndStart() {
-
-        ApplicationContext context = new ClassPathXmlApplicationContext( "services.xml", "data-services.xml");
+        ApplicationContext context = new AnnotationConfigApplicationContext( AppConfig.class );
         MusicController controller = (MusicController) context.getBean("controller");
         controller.run();
     }

@@ -2,6 +2,7 @@ package com.nology.musicplayer.audio;
 
 import com.nology.musicplayer.data.Track;
 import com.nology.musicplayer.player.TrackPlayer;
+import org.springframework.stereotype.Component;
 
 import javax.sound.sampled.*;
 import java.io.File;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+@Component
 public class AudioTrackPlayer implements TrackPlayer {
 
     /*

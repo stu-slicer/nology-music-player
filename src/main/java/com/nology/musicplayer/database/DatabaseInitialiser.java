@@ -1,7 +1,10 @@
 package com.nology.musicplayer.database;
 
 import com.nology.musicplayer.data.StarRating;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -9,6 +12,7 @@ import java.time.LocalDate;
 
 import static java.time.LocalDate.parse;
 
+@Component
 public class DatabaseInitialiser {
 
     public static final String CREATE_TRACKS = "create table tracks (" +
@@ -25,6 +29,7 @@ public class DatabaseInitialiser {
 
     private DBUtils dbUtils;
 
+    @Autowired
     public DatabaseInitialiser(DBUtils dbUtils) {
         this.dbUtils = dbUtils;
     }
@@ -32,6 +37,7 @@ public class DatabaseInitialiser {
     /**
      * Initialise the database; by recreating the database and adding in the tracks.
      */
+    @PostConstruct
     public void initialiseDatabase() {
 
         try {

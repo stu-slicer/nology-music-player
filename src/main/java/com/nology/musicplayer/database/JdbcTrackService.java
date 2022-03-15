@@ -4,6 +4,8 @@ import com.nology.musicplayer.data.StarRating;
 import com.nology.musicplayer.data.Track;
 import com.nology.musicplayer.exceptions.TrackDatabaseException;
 import com.nology.musicplayer.service.TrackService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -12,10 +14,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class JdbcTrackService implements TrackService {
 
     private DBUtils dbUtils;
 
+    @Autowired
     public JdbcTrackService(DBUtils dbUtils) {
         this.dbUtils = dbUtils;
     }

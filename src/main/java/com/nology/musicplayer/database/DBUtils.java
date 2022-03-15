@@ -2,36 +2,43 @@ package com.nology.musicplayer.database;
 
 import com.nology.musicplayer.data.StarRating;
 import com.nology.musicplayer.exceptions.TrackDatabaseException;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 
 import static com.nology.musicplayer.database.DatabseConstants.JDBC_DATABASE_URL;
 
-public class DBUtils {
+@Component
+public class DBUtils implements DatabseConstants {
 
     /**
      * JDBC driver class name.
      */
+    @Value("${jdbc.classDriver}")
     private String jdbcDriver;
 
     /**
      * JDBC connection URL
      */
+    @Value("${jdbc.url}")
     private String jdbcDatabaseUrl;
 
     /**
      * Username for database
      */
+    @Value("${jdbc.username}")
     private String dbUsername;
 
     /**
      * Password for database.
      */
+    @Value("${jdbc.password}")
     private String dbPassword;
 
     public void performDBAction(String sql, boolean throwException) {
 
-        try (Connection connection = DriverManager.getConnection(this.jdbcDatabaseUrl)) {
+        try (Connection connection = DriverManager.getConnection( this.jdbcDatabaseUrl )) {
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
 
                 boolean result = statement.execute();

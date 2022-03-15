@@ -4,9 +4,14 @@ import com.nology.musicplayer.data.Track;
 import com.nology.musicplayer.player.TrackPlayer;
 import com.nology.musicplayer.frontend.TrackDisplayer;
 import com.nology.musicplayer.service.TrackService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.*;
 
+@Component("controller")
 public class MusicController {
 
     private TrackService trackService;
@@ -174,18 +179,23 @@ public class MusicController {
     /**
      * Initialise the controller. Load all tracks into playlist.
      */
+    @PostConstruct
     protected void initialise() {
         this.playlist = trackService.getAllTracks();
     }
 
+    @Autowired
+    @Qualifier("audioTrackPlayer")
     public void setTrackPlayer(TrackPlayer trackPlayer) {
         this.trackPlayer = trackPlayer;
     }
 
+    @Autowired
     public void setTrackDisplayer(TrackDisplayer trackDisplayer) {
         this.trackDisplayer = trackDisplayer;
     }
 
+    @Autowired
     public void setTrackService(TrackService trackService) {
         this.trackService = trackService;
     }
